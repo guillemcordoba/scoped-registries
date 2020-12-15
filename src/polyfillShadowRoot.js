@@ -248,11 +248,13 @@ export const polyfillShadowRoot = (
     if (node.tagName === 'STYLE') {
       const style = document.createElement('STYLE');
 
-      style.appendChild(
-        document.createTextNode(
-          cssTransform(node.firstChild.textContent, registry)
-        )
-      );
+      if (node.firstChild) {
+        style.appendChild(
+          document.createTextNode(
+            cssTransform(node.firstChild.textContent, registry)
+          )
+        );
+      }
 
       return style;
     }
