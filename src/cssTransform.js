@@ -152,7 +152,7 @@ const blockExtractor = endCharacter => (query, start) => {
  * @return {string}
  */
 export const cssTransform = (cssText, registry = window.customElements) => {
-  if (registry === window.customElements || cssText === undefined) {
+  if (registry === window.customElements) {
     return cssText;
   }
 

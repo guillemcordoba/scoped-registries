@@ -89,10 +89,17 @@ if (supportsAdoptingStyleSheets) {
           const scopedStyleSheet = new CSSStyleSheet();
 
           for (const rule of styleSheet.cssRules) {
+            let transformedRule = rule;
+
+            if (rule.selectorText && rule.style.cssText) {
+              transformedRule = `${cssTransform(
+                rule.selectorText,
+                registry
+              )} { ${rule.style.cssText} }`;
+            }
+
             scopedStyleSheet.insertRule(
-              `${cssTransform(rule.selectorText, registry)} { ${
-                rule.style.cssText
-              } }`,
+              transformedRule,
               scopedStyleSheet.cssRules.length
             );
           }
