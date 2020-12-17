@@ -23,6 +23,8 @@
       // eslint-disable-next-line max-classes-per-file
       import { Foo } from './Foo.js';
       import { Bar } from './Bar.js';
+      import { WithLightDom } from './WithLightDom.js';
+      customElements.define('with-light-dom', WithLightDom);
 
       const registry1 = new CustomElementRegistry();
       const registry2 = new CustomElementRegistry();
@@ -46,7 +48,7 @@
             this.shadowRoot.appendChild($clone);
 
             const css = new CSSStyleSheet();
-            css.replaceSync('my-el { margin: 10px; } @font-face { font-family: Arial; }');
+            css.replaceSync('my-el { margin: 10px; }');
 
             this.shadowRoot.adoptedStyleSheets = [css];
           }
@@ -56,6 +58,6 @@
       customElements.define('my-element2', createElement(registry2));
     </script>
 
-    <my-element2></my-element2>
+    <with-light-dom></with-light-dom>
   </body>
 </html>
